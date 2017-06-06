@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+
+    <Properties>
+        <Property name="log-path">C:\___ALMAVIVA\___DISCARICA\___LOGS</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>>
+            </PatternLayout>
+        </Console>
+        <File name="App-File-Appender" fileName="${log-path}/APP_user_microservice.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+        <!--<File name="SpringBoot-File-Appender" fileName="${log-path}/INFRASTRUCTURE_user_microservice.log" >-->
+            <!--<PatternLayout>-->
+                <!--<pattern>-->
+                    <!--[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n-->
+                <!--</pattern>-->
+            <!--</PatternLayout>-->
+        <!--</File>-->
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="SpringBoot-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
+        </Logger>
+        <Logger name="it.millsoft.ms.users.service.impl" level="info" additivity="false">
+            <AppenderRef ref="App-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
+        </Logger>
+        <Root>
+            <AppenderRef ref="Console-Appender"/>
+        </Root>
+    </Loggers>
+</Configuration>
